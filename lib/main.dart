@@ -31,8 +31,18 @@ class HomeScreen extends StatelessWidget {
 
   String _formatDateTime(DateTime now) {
     const months = [
-      'January','February','March','April','May','June',
-      'July','August','September','October','November','December'
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
 
     String two(int n) => n.toString().padLeft(2, '0');
@@ -71,6 +81,23 @@ class HomeScreen extends StatelessWidget {
                   color: Colors.white.withOpacity(0.7),
                 ),
               ),
+              const SizedBox(height: 22),
+
+              ClipRRect(
+                borderRadius: BorderRadius.circular(999),
+                child: Container(
+                  height: 18,
+                  width: 280, // fixed width like the video
+                  color: Colors.white.withOpacity(0.18),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: FractionallySizedBox(
+                      widthFactor: _yearProgress(now),
+                      child: Container(color: const Color(0xFF33D17A)),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -78,5 +105,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
