@@ -111,29 +111,31 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 28),
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
                   '$percent% of $year has passed',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontSize: 26,
+                    fontSize: 22,
                     fontWeight: FontWeight.w700,
-                    height: 1.2,
+                    height: 1.15,
                   ),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   _formatDateTime(now),
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white.withOpacity(0.7),
+                    fontSize: 12,
+                    color: Colors.white.withOpacity(0.65),
                   ),
                 ),
-                const SizedBox(height: 22),
+                const SizedBox(height: 14),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(999),
                   child: Container(
-                    height: 18,
+                    height: 14,
                     width: MediaQuery.of(context).size.width * 0.78,
                     color: Colors.white.withOpacity(0.18),
                     child: Align(
