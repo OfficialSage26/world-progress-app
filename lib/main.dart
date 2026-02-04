@@ -19,18 +19,38 @@ class WorldProgressApp extends StatelessWidget {
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  double _clamp01(double x) => x < 0 ? 0 : (x > 1 ? 1 : x);
+
+  double _yearProgress(DateTime now) {
+    final start = DateTime(now.year, 1, 1);
+    final end = DateTime(now.year + 1, 1, 1);
+    final total = end.difference(start).inSeconds;
+    final done = now.difference(start).inSeconds;
+    return _clamp01(done / total);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFF0B0B0B),
+    final now = DateTime.now();
+    final year = now.year;
+    final percent = (_yearProgress(now) * 100).toStringAsFixed(2);
+
+    return Scaffold(
+      backgroundColor: const Color(0xFF0B0B0B),
       body: SafeArea(
         child: Center(
           child: Text(
-            'World Progress',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+            '$percent% of $year has passed',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 26,
+              fontWeight: FontWeight.w700,
+              height: 1.2,
+            ),
           ),
         ),
       ),
     );
   }
 }
+
