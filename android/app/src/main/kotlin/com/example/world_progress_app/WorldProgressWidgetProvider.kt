@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import es.antonborri.home_widget.HomeWidgetPlugin
 import es.antonborri.home_widget.HomeWidgetProvider
+import android.net.Uri
+import es.antonborri.home_widget.HomeWidgetLaunchIntent
+import com.example.world_progress_app.MainActivity
 
 class WorldProgressWidgetProvider : HomeWidgetProvider() {
 
@@ -30,6 +33,13 @@ class WorldProgressWidgetProvider : HomeWidgetProvider() {
         val layoutId = pickLayout(minW, minH)
 
         val views = RemoteViews(context.packageName, R.layout.world_progress_widget_medium)
+        
+        val pendingIntent = HomeWidgetLaunchIntent.getActivity(
+        context,
+        MainActivity::class.java,
+        Uri.parse("worldprogress://open")
+        )
+        views.setOnClickPendingIntent(R.id.widget_root, pendingIntent)
 
         val raw = widgetData.getString("percent_line", "0.00% of 2026 has passed") ?: ""
         val percentLine = widgetData.getString("percent_line", "0.00% of 2026 has passed") ?: ""
