@@ -29,6 +29,18 @@ class HomeScreen extends StatelessWidget {
     return _clamp01(done / total);
   }
 
+  String _formatDateTime(DateTime now) {
+    const months = [
+      'January','February','March','April','May','June',
+      'July','August','September','October','November','December'
+    ];
+
+    String two(int n) => n.toString().padLeft(2, '0');
+    final hour12 = ((now.hour + 11) % 12) + 1;
+
+    return '${months[now.month - 1]} ${now.day}, ${two(hour12)}:${two(now.minute)}';
+  }
+
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
@@ -39,18 +51,32 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: const Color(0xFF0B0B0B),
       body: SafeArea(
         child: Center(
-          child: Text(
-            '$percent% of $year has passed',
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w700,
-              height: 1.2,
-            ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                '$percent% of $year has passed',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
+                  height: 1.2,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                _formatDateTime(now),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.white.withOpacity(0.7),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
+
 
