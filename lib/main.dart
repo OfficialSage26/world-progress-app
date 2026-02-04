@@ -84,43 +84,46 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: const Color(0xFF0B0B0B),
       body: SafeArea(
         child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                '$percent% of $year has passed',
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w700,
-                  height: 1.2,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 28),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  '$percent% of $year has passed',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700,
+                    height: 1.2,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                _formatDateTime(now),
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white.withOpacity(0.7),
+                const SizedBox(height: 10),
+                Text(
+                  _formatDateTime(now),
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white.withOpacity(0.7),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 22),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(999),
-                child: Container(
-                  height: 18,
-                  width: 280,
-                  color: Colors.white.withOpacity(0.18),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: FractionallySizedBox(
-                      widthFactor: progress,
-                      child: Container(color: const Color(0xFF33D17A)),
+                const SizedBox(height: 22),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(999),
+                  child: Container(
+                    height: 18,
+                    width: MediaQuery.of(context).size.width * 0.78,
+                    color: Colors.white.withOpacity(0.18),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: FractionallySizedBox(
+                        widthFactor: progress,
+                        child: Container(color: const Color(0xFF33D17A)),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
