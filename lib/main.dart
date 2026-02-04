@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'widget_sync.dart';
 
 void main() => runApp(const WorldProgressApp());
 
@@ -25,13 +26,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Future<void> _syncWidget(DateTime now, double progress) async {
+    final year = now.year;
+    final percent = (progress * 100).toStringAsFixed(2);
+
+    await WidgetSync.save(
+      percentLine: '$percent% of $year has passed',
+      dateLine: _formatDateTime(now),
+      progressBp: (progress * 10000).round(),
+    );
+  }
+
   late Timer _timer;
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(const Duration(minutes: 1), (_) {
-      if (mounted) setState(() {});
+    final now = DateTime.now();
+    final progress = _yearProgress(now);
+    _syncWidget(now, progress);
+
+    _timer = Timer.periodic(const Duration(minutes: 1), (_) async {
+      if (!mounted) return;
+
+      setState(() {});
+
+      final now = DateTime.now();
+      final progress = _yearProgress(now);
+      await _syncWidget(now, progress);
     });
   }
 
