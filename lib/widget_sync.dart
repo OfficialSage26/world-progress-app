@@ -14,4 +14,10 @@ class WidgetSync {
     await HomeWidget.saveWidgetData<String>(dateKey, dateLine);
     await HomeWidget.saveWidgetData<int>(progressBpKey, progressBp);
   }
+  static Future<void> refreshAndroid() async {
+    await HomeWidget.updateWidget(
+      name: 'WorldProgressWidgetProvider',
+      androidName: 'WorldProgressWidgetProvider',
+    );
+  }
 }

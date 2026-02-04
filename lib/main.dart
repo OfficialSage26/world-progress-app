@@ -35,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
       dateLine: _formatDateTime(now),
       progressBp: (progress * 10000).round(),
     );
+    await WidgetSync.refreshAndroid();
   }
 
   late Timer _timer;
