@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 void main() => runApp(const WorldProgressApp());
 
@@ -16,8 +17,29 @@ class WorldProgressApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(minutes: 1), (_) {
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   double _clamp01(double x) => x < 0 ? 0 : (x > 1 ? 1 : x);
 
@@ -55,7 +77,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final now = DateTime.now();
     final year = now.year;
-    final percent = (_yearProgress(now) * 100).toStringAsFixed(2);
+    final progress = _yearProgress(now);
+    final percent = (progress * 100).toStringAsFixed(2);
 
     return Scaffold(
       backgroundColor: const Color(0xFF0B0B0B),
@@ -82,17 +105,16 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 22),
-
               ClipRRect(
                 borderRadius: BorderRadius.circular(999),
                 child: Container(
                   height: 18,
-                  width: 280, // fixed width like the video
+                  width: 280,
                   color: Colors.white.withOpacity(0.18),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: FractionallySizedBox(
-                      widthFactor: _yearProgress(now),
+                      widthFactor: progress,
                       child: Container(color: const Color(0xFF33D17A)),
                     ),
                   ),
