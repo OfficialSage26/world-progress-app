@@ -12,32 +12,49 @@
         android:padding="12dp"
         android:background="@drawable/widget_card_bg">
 
-        <TextView
-            android:id="@+id/txtPercent"
+        <!-- Top area grows/shrinks with widget size -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0.00% of 2026 has passed"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:maxLines="2" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="February 4, 12:54"
-            android:textColor="#CCFFFFFF"
-            android:textSize="12sp"
-            android:maxLines="1" />
+            <TextView
+                android:id="@+id/txtPercent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0.00% of 2026 has passed"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="18sp"
+                android:autoSizeStepGranularity="1sp" />
 
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="February 4, 12:58"
+                android:textColor="#CCFFFFFF"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeMaxTextSize="13sp"
+                android:autoSizeStepGranularity="1sp" />
+        </LinearLayout>
+
+        <!-- Progress bar stays at bottom -->
         <ProgressBar
             android:id="@+id/progYear"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:max="10000"
             android:progress="0"
             android:progressTint="#33D17A"

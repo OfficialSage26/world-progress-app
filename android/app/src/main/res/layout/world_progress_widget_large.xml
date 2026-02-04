@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="18dp"
+        android:background="@drawable/widget_card_bg"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="34dp">
+
+            <ProgressBar
+                android:id="@+id/progYear"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:max="10000"
+                android:progress="0"
+                android:progressDrawable="@drawable/widget_progress_pill" />
+
+            <TextView
+                android:id="@+id/txtPercent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="0.00% of 2026"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </FrameLayout>
+
+    </LinearLayout>
+</FrameLayout>
